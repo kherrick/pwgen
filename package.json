@@ -2,7 +2,7 @@
   "author": "Karl Herrick",
   "name": "pwgen",
   "description": "A command line implementation of pwgen using Node.js.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "repository": {
     "url": "https://github.com/kherrick/pwgen"
   },
