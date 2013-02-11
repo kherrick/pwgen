@@ -1,0 +1,21 @@
+{
+  "author": "Karl Herrick",
+  "name": "pwgen",
+  "description": "A command line implementation of pwgen using Node.js.",
+  "version": "0.1.3",
+  "repository": {
+    "url": "http://karlherrick.com/node/pwgen"
+  },
+  "main": "./lib/main.js",
+  "bin": {
+    "pwgen": "./bin/pwgen"
+  },
+  "dependencies": {
+   "commander": ">= 0.6.1" 
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
