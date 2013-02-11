@@ -1,21 +1,22 @@
 {
-  "author": "Karl Herrick",
-  "name": "pwgen",
-  "description": "A command line implementation of pwgen using Node.js.",
-  "version": "0.1.4",
-  "repository": {
-    "url": "https://github.com/kherrick/pwgen"
-  },
-  "main": "./lib/main.js",
-  "bin": {
-    "pwgen": "./bin/pwgen"
-  },
-  "dependencies": {
-   "commander": ">= 0.6.1" 
-  },
-  "devDependencies": {},
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
-  }
+	"author": "Karl Herrick",
+	"name": "pwgen",
+	"description": "A command line implementation of pwgen using Node.js.",
+	"version": "0.1.5",
+	"repository": {
+		"type" : "git",
+		"url": "https://github.com/kherrick/pwgen"
+	},
+	"main": "./lib/main.js",
+	"bin": {
+		"pwgen": "./bin/pwgen"
+	},
+	"dependencies": {
+		"commander": ">= 0.6.1" 
+	},
+	"devDependencies": {},
+	"optionalDependencies": {},
+	"engines": {
+		"node": "*"
+	}
 }
