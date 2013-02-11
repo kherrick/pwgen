@@ -4,7 +4,7 @@
   "description": "A command line implementation of pwgen using Node.js.",
   "version": "0.1.3",
   "repository": {
-    "url": "http://karlherrick.com/node/pwgen"
+    "url": "https://github.com/kherrick/pwgen"
   },
   "main": "./lib/main.js",
   "bin": {
