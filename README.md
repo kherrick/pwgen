@@ -1,6 +1,19 @@
 #pwgen
 A command line implementation of pwgen using Node.js.
 
+## Use as library
+
+```js
+var Pwgen = require('pwgen')
+var pwgen = new Pwgen()
+
+pwgen.includeCapitalLetter = true
+pwgen.includeNumber = true
+pwgen.maxLength = 20
+
+console.log(pwgen.generate())
+```
+
 ##License
 Copyright (C) 2013 Karl Herrick, http://karlherrick.com
 
