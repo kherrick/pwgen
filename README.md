@@ -1,5 +1,7 @@
-#pwgen
-A command line implementation of pwgen using Node.js.
+pwgen
+======
+
+An example pwgen using Node.js.
 
 ## Use as library
 
@@ -14,7 +16,7 @@ pwgen.maxLength = 20
 console.log(pwgen.generate())
 ```
 
-##License
+## License
 Copyright (C) 2013 Karl Herrick, http://karlherrick.com
 
 This file is part of pwgen.
