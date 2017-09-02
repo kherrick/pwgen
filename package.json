@@ -1,6 +1,6 @@
 {
 	"author": "Karl Herrick",
-	"name": "@jhenning/pwgen",
+	"name": "pwgen",
 	"description": "A command line implementation of pwgen using Node.js.",
 	"version": "0.1.7",
 	"repository": {
