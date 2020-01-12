@@ -2,13 +2,14 @@
   "author": "Karl Herrick",
   "name": "pwgen",
   "description": "pwgen compiled as Wasm.",
-  "version": "0.1.11",
+  "version": "1.0.0-alpha.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/kherrick/pwgen"
   },
   "license": "AGPL-3.0",
   "main": "./lib/pwgen.js",
+  "module": "./lib/esm/pwgen.js",
   "bin": {
     "pwgen": "./bin/pwgen"
   },

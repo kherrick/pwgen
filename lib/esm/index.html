@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Emscripten-Generated Code</title>
+  </head>
+  <body>
+    <script type="module">
+      const theP = () => {
+        import('./pwgen.js').then(mod => {
+          console.log = function (message) {
+            const p = document.createElement('p')
+            p.innerText = message
+
+            document.body.appendChild(p)
+          };
+
+          mod.default({ arguments: [ '-sy', '20', '1' ]})
+        })
+      }
+
+
+      console.log('theP: ', theP())
+    </script>
+  </body>
+</html>
+
+
