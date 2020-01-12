@@ -1,28 +1,12 @@
 pwgen
 ======
 
-An example pwgen using Node.js.
+pwgen compiled as Wasm.
 
-## Use as library
+## Use as library in Node.js
 
 ```js
-var Pwgen = require('pwgen')
-var pwgen = new Pwgen()
+const pwgen = require('./pwgen')
 
-pwgen.includeCapitalLetter = true
-pwgen.includeNumber = true
-pwgen.maxLength = 20
-
-console.log(pwgen.generate())
+pwgen({ arguments })
 ```
-
-## License
-Copyright (C) 2013 Karl Herrick, http://karlherrick.com
-
-This file is part of pwgen.
-
-pwgen is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-pwgen is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with pwgen. If not, see http://www.gnu.org/licenses/.
