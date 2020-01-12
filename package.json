@@ -13,6 +13,11 @@
   "bin": {
     "pwgen": "./bin/pwgen"
   },
+  "files": [
+    "lib",
+    "bin",
+    "src"
+  ],
   "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {},

@@ -3,25 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Emscripten-Generated Code</title>
+    <title>pwgen example</title>
   </head>
   <body>
+    <style>
+      #target-password {
+        font-size: 2rem;
+        margin: auto;
+        padding: 2rem;
+        width: 90%;
+      }
+    </style>
+    <div id="target-password"></div>
     <script type="module">
-      const theP = () => {
-        import('./pwgen.js').then(mod => {
-          console.log = function (message) {
-            const p = document.createElement('p')
-            p.innerText = message
-
-            document.body.appendChild(p)
-          };
-
-          mod.default({ arguments: [ '-sy', '20', '1' ]})
-        })
+      const handlePassword = msg => {
+        document.getElementById('target-password').innerText = msg
       }
 
-
-      console.log('theP: ', theP())
+      import('./pwgen.js').then(mod => {
+        mod.default({ arguments: [ '-sy', '20', '1' ], print: handlePassword })
+      })
     </script>
   </body>
 </html>
