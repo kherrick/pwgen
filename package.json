@@ -11,12 +11,10 @@
   "bin": {
     "pwgen": "./bin/pwgen"
   },
-  "dependencies": {
-    "commander": "^4.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
-    "node": "*"
+    "node": ">=8.17.0"
   }
 }
