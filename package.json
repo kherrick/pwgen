@@ -7,6 +7,7 @@
     "type": "git",
     "url": "https://github.com/kherrick/pwgen"
   },
+  "license": "AGPL-3.0",
   "main": "./lib/pwgen_module.js",
   "bin": {
     "pwgen": "./bin/pwgen"
