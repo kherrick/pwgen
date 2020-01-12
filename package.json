@@ -1,22 +1,22 @@
 {
-	"author": "Karl Herrick",
-	"name": "pwgen",
-	"description": "An example pwgen using Node.js",
-	"version": "0.1.8",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/kherrick/pwgen"
-	},
-	"main": "./lib/pwgen_module.js",
-	"bin": {
-		"pwgen": "./bin/pwgen"
-	},
-	"dependencies": {
-		"commander": "^4.1.0"
-	},
-	"devDependencies": {},
-	"optionalDependencies": {},
-	"engines": {
-		"node": "*"
-	}
+  "author": "Karl Herrick",
+  "name": "pwgen",
+  "description": "pwgen compiled as Wasm.",
+  "version": "0.1.9",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kherrick/pwgen"
+  },
+  "main": "./lib/pwgen_module.js",
+  "bin": {
+    "pwgen": "./bin/pwgen"
+  },
+  "dependencies": {
+    "commander": "^4.1.0"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
 }
