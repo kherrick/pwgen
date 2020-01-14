@@ -4,13 +4,43 @@
   <meta charset="utf-8">
   <meta name="Description" content="An example usage of x-pwgen.">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
 
   <base href="/">
 
   <title>x-pwgen</title>
+  <style>
+    html, body, .grid-container { height: 100%; }
+
+    .grid-container {
+      display: grid;
+      grid-template-areas: "top" "middle" "bottom";
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    .top { grid-area: top; }
+    .middle { grid-area: middle; }
+    .bottom { grid-area: bottom; }
+
+    :root {
+      --x-pwgen-font-family: 'Roboto Mono', monospace;
+      --x-pwgen-font-size: 1.5rem;
+    }
+
+    x-pwgen {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <x-pwgen></x-pwgen>
+  <section class="grid-container">
+    <section class="top"></section>
+    <section class="middle">
+      <x-pwgen></x-pwgen>
+    </section>
+    <section class="bottom"></section>
+  </section>
 
   <script type="module">
     import './lib/esm/index.js'
