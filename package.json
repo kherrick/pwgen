@@ -29,5 +29,12 @@
   "optionalDependencies": {},
   "engines": {
     "node": ">=8.17.0"
-  }
+  },
+  "keywords": [
+    "password generator",
+    "custom element",
+    "Web Component",
+    "WebAssembly",
+    "Wasm"
+  ]
 }
