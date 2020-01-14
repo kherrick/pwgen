@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="Description" content="An example usage of x-pwgen.">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+  <base href="/">
+
+  <title>x-pwgen</title>
+</head>
+<body>
+  <x-pwgen></x-pwgen>
+
+  <script type="module">
+    import './lib/esm/index.js'
+
+    document.addEventListener(
+      'x-pwgen-handle-password',
+      ({ detail }) => {
+        console.log(detail.msg)
+      }
+    )
+  </script>
+</body>
+</html>

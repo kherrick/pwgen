@@ -2,24 +2,29 @@
   "author": "Karl Herrick",
   "name": "pwgen",
   "description": "pwgen compiled as Wasm.",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/kherrick/pwgen"
   },
   "license": "AGPL-3.0",
   "main": "./lib/pwgen.js",
-  "module": "./lib/esm/pwgen.js",
+  "module": "./lib/esm/index.js",
   "bin": {
     "pwgen": "./bin/pwgen"
   },
+  "scripts": {
+    "start": "npx serve -s ."
+  },
   "files": [
-    "lib",
     "bin",
+    "lib",
     "src"
   ],
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "serve": "^11.3.0"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": ">=8.17.0"
