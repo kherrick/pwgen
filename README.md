@@ -41,5 +41,11 @@ sudo npm i -g pwgen && pwgen -sy 20 1
 ```js
 const pwgen = require('pwgen')
 
-pwgen({ arguments: [ '-sy', '20', '1' ] })
+const flags = '-1sy'
+const length = '20'
+const number = '10'
+
+pwgen({ arguments: [ flags, length, number ], print: stdout => {
+  console.log(`Password: ${stdout}`)
+}})
 ```
