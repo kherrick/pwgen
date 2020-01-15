@@ -1,7 +1,7 @@
-pwgen
+<a href="https://kherrick.github.io/pwgen/">pwgen</a>
 ======
 
-pwgen compiled as Wasm.
+[A password generator](https://github.com/tytso/pwgen/tree/1459a31e07fa208cddb2c4f3f72071503c37b8bc) compiled as Wasm that can be used from the command line, as a module, or custom element.
 
 ## Install and use on the CLI
 
@@ -11,7 +11,7 @@ sudo npm i -g pwgen && pwgen -sy 20 1
 
 ## Use as a custom element
 
-### With default options
+### With default options ([demo](https://jsbin.com/pohovevimu/1/edit?html,output))
 ```html
 <x-pwgen></x-pwgen>
 
@@ -20,7 +20,7 @@ sudo npm i -g pwgen && pwgen -sy 20 1
 </script>
 ```
 
-### With additional options and detail logging
+### With additional options and detail logging ([demo](https://jsbin.com/bevewocepe/1/edit?html,console,output))
 ```html
 <x-pwgen composed flags="-sy" length="20" number="1"></x-pwgen>
 
