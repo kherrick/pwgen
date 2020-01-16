@@ -6,7 +6,7 @@
 ## Use on the CLI with Mac, Windows, and Linux
 
 ```bash
-npx pwgen -sy 20 1
+npx -q pwgen -sy 20 1
 ```
 
 ## Use as a custom element
