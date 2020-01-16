@@ -11,6 +11,7 @@
   "main": "./lib/pwgen.js",
   "module": "./lib/esm/component/Xpwgen.js",
   "browser": "./lib/esm/component/Xpwgen.js",
+  "types": "lib/esm/component/types.d.ts",
   "bin": {
     "pwgen": "./bin/pwgen"
   },
