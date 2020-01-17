@@ -37,8 +37,20 @@
 
     .top {
       grid-area: top;
-      max-width: calc(100vw - 1.5rem);
       text-align: center;
+      width: 100%;
+    }
+
+    .branding {
+      display: flex;
+    }
+
+    .branding > section {
+      flex: 1;
+    }
+
+    .badge {
+      text-align: right;
     }
 
     .middle {
@@ -84,16 +96,34 @@
 <body>
   <section class="grid-container">
     <section class="top">
-      <h1>
-        <a href="https://kherrick.github.io/pwgen/">
-          pwgen
-        </a>
-      </h1>
-      <p>
-        <a href="https://github.com/tytso/pwgen/tree/1459a31e07fa208cddb2c4f3f72071503c37b8bc">
-          A password generator
-        </a> compiled as Wasm that can be used from the command line, as a module, or custom element.
-      </p>
+      <section class="branding">
+        <section></section>
+        <section class="title"><h1>
+          <a href="https://kherrick.github.io/pwgen/">
+            pwgen
+          </a>
+        </h1></section>
+        <section class="badge">
+          <a href="https://github.com/kherrick/pwgen/">
+            <img
+              alt="Fork me on GitHub"
+              class="attachment-full size-full"
+              data-recalc-dims="1"
+              height="149"
+              loading="lazy"
+              src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=149%2C149"
+              width="149"
+            >
+          </a>
+        </section>
+      </section>
+      <section>
+        <p>
+          <a href="https://github.com/tytso/pwgen/tree/1459a31e07fa208cddb2c4f3f72071503c37b8bc">
+            A password generator
+          </a> compiled as Wasm that can be used from the command line, as a module, or custom element. Learn More.
+        </p>
+      </section>
     </section>
     <section class="middle">
       <x-pwgen flags="-sync"></x-pwgen>
