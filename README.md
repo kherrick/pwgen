@@ -5,8 +5,18 @@
 
 ## Use on the CLI with Mac, Windows, and Linux
 
+### With npx
 ```bash
-npx -q pwgen -sy 20 1
+npx pwgen -sy 20 1
+```
+
+### With npm, as a global package
+```bash
+npm i -g pwgen
+```
+
+```bash
+pwgen -sy 20 1
 ```
 
 ## Use as a custom element

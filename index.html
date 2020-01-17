@@ -4,46 +4,130 @@
   <meta charset="utf-8">
   <meta name="Description" content="An example usage of x-pwgen.">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <base href="/">
 
   <title>x-pwgen</title>
   <style>
-    html, body, .grid-container { height: 100%; }
+    :root {
+      --x-pwgen-font-family: 'Roboto Mono', monospace;
+      --x-pwgen-font-size: 1rem;
+    }
+
+    html, body, .grid-container {
+      height: 100%;
+      margin: 0;
+    }
 
     .grid-container {
+      align-items: center;
       display: grid;
       grid-template-areas: "top" "middle" "bottom";
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      justify-items: center;
     }
 
-    .top { grid-area: top; }
-    .middle { grid-area: middle; }
-    .bottom { grid-area: bottom; }
+    .top {
+      grid-area: top;
+      max-width: calc(100vw - 1.5rem);
+      text-align: center;
+    }
 
-    :root {
-      --x-pwgen-font-family: 'Roboto Mono', monospace;
-      --x-pwgen-font-size: 1.5rem;
+    .middle {
+      align-self: center;
+      font-weight: bold;
+      grid-area: middle;
+    }
+
+    .bottom {
+      background-color: #333;
+      grid-area: bottom;
+      margin-top: 1rem;
+      width: 20rem;
+      min-height: 6rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    a {
+      color: #222;
     }
 
     x-pwgen {
-      text-align: center;
+      overflow-wrap: break-word;
+    }
+
+    mwc-slider {
+      --mdc-theme-secondary: #ccc;
+      --mdc-theme-text-primary-on-dark: #000;
+
+      padding: 0 1rem 0 1rem;
+    }
+
+    mwc-formfield {
+      --mdc-theme-text-primary-on-background: #fff;
+
+      display: block;
     }
   </style>
 </head>
 <body>
   <section class="grid-container">
-    <section class="top"></section>
-    <section class="middle">
-      <x-pwgen></x-pwgen>
+    <section class="top">
+      <h1>
+        <a href="https://kherrick.github.io/pwgen/">
+          pwgen
+        </a>
+      </h1>
+      <p>
+        <a href="https://github.com/tytso/pwgen/tree/1459a31e07fa208cddb2c4f3f72071503c37b8bc">
+          A password generator
+        </a> compiled as Wasm that can be used from the command line, as a module, or custom element.
+      </p>
     </section>
-    <section class="bottom"></section>
+    <section class="middle">
+      <x-pwgen flags="-sync"></x-pwgen>
+    </section>
+    <section class="bottom">
+      <mwc-formfield label="Number of Passwords">
+        <mwc-slider
+          id="number-of-passwords"
+          markers=""
+          max="10"
+          min="1"
+          onchange="((that) => {
+            document.querySelector('x-pwgen').number = that.value
+          })(this)"
+          pin=""
+          step="1"
+          value="1"
+        ></mwc-slider>
+      </mwc-formfield>
+      <mwc-formfield label="Length">
+        <mwc-slider
+          id="password-length"
+          value="20"
+          pin=""
+          markers=""
+          min="1"
+          max="30"
+          step="1"
+          onchange="((that) => {
+            document.querySelector('x-pwgen').length = that.value
+          })(this)"
+        ></mwc-slider>
+      </mwc-formfield>
+    </section>
   </section>
 
   <script type="module">
     import './lib/esm/index.js'
+    import 'https://unpkg.com/@material/mwc-slider?module'
+    import 'https://unpkg.com/@material/mwc-formfield?module'
 
     document.addEventListener(
       'x-pwgen-handle-password',
