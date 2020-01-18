@@ -19,6 +19,13 @@ npm i -g pwgen
 pwgen -sy 20 1
 ```
 
+## With wapm
+```bash
+wapm install kherrick/pwgen
+
+wapm run pwgen -sy 20 1
+```
+
 ## Use as a custom element
 
 ### With default options ([demo](https://jsbin.com/yikizelado/1/edit?html,output))
