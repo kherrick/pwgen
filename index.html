@@ -8,6 +8,8 @@
 
   <base href="/">
 
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <title>x-pwgen</title>
   <style>
     :root {
@@ -124,9 +126,7 @@
       </section>
       <section>
         <p>
-          <a href="https://github.com/tytso/pwgen/tree/1459a31e07fa208cddb2c4f3f72071503c37b8bc">
-            A password generator
-          </a> compiled as Wasm that can be used from the command line, as a module, or custom element. <a href="https://github.com/kherrick/pwgen/">Learn More</a>.
+          A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module. <a href="https://github.com/kherrick/pwgen/">Learn More</a>.
         </p>
       </section>
     </section>
@@ -167,8 +167,7 @@
 
   <script type="module">
     import './lib/esm/index.js'
-    import 'https://unpkg.com/@material/mwc-slider?module'
-    import 'https://unpkg.com/@material/mwc-formfield?module'
+    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/index.js'
 
     document.addEventListener(
       'x-pwgen-handle-password',
@@ -176,6 +175,10 @@
         console.log(detail.msg)
       }
     )
+
+    import registerServiceWorker from './service-worker/registerServiceWorker.js'
+
+    registerServiceWorker(document.querySelector('base').href.replace(/\/$/, ''))
   </script>
 </body>
 </html>

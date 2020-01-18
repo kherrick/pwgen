@@ -1,7 +1,7 @@
 <a href="https://kherrick.github.io/pwgen/">pwgen</a>
 ======
 
-[A password generator](https://github.com/tytso/pwgen/tree/1459a31e07fa208cddb2c4f3f72071503c37b8bc) compiled as Wasm that can be used from the command line, as a module, or custom element.
+A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module.
 
 ## Use on the CLI with Mac, Windows, and Linux
 
@@ -19,7 +19,7 @@ npm i -g pwgen
 pwgen -sy 20 1
 ```
 
-## With wapm
+### With wapm
 ```bash
 wapm install kherrick/pwgen
 
