@@ -15,59 +15,17 @@
     :root {
       --x-pwgen-font-family: 'Roboto Mono', monospace;
       --x-pwgen-font-size: 1rem;
+      --x-pwgen-li-padding: 0.75rem 0 0 0;
+
+      --mdc-theme-primary: #ccc;
+      --mdc-theme-secondary: #ccc;
+      --mdc-theme-text-primary-on-background: #fff;
+      --mdc-theme-text-primary-on-dark: #000;
     }
 
     html, body {
       height: 100%;
       margin: 0;
-    }
-
-    .grid-container {
-      align-items: center;
-      display: grid;
-      grid-template-areas: "top" "middle" "bottom";
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr auto;
-      justify-items: center;
-
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
-
-    .top {
-      grid-area: top;
-      text-align: center;
-      width: 100%;
-    }
-
-    .branding {
-      display: flex;
-      max-height: 5rem;
-    }
-
-    .branding > section {
-      flex: 1;
-    }
-
-    .badge {
-      text-align: right;
-    }
-
-    .middle {
-      align-self: center;
-      font-weight: bold;
-      grid-area: middle;
-    }
-
-    .bottom {
-      background-color: #333;
-      grid-area: bottom;
-      margin-top: 1rem;
-      width: 20rem;
-      min-height: 6rem;
     }
 
     h1 {
@@ -78,39 +36,97 @@
       color: #222;
     }
 
+    section > p {
+      margin: 0;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+
+    mwc-formfield {
+      display: block;
+    }
+
     x-pwgen {
       overflow-wrap: break-word;
     }
 
     mwc-slider {
-      --mdc-theme-secondary: #ccc;
-      --mdc-theme-text-primary-on-dark: #000;
-
       padding: 0 1rem 0 1rem;
     }
 
-    mwc-formfield {
-      --mdc-theme-text-primary-on-background: #fff;
-
-      display: block;
+    #clipboard {
+      text-align: center;
     }
 
-    section > p {
-      padding: 0.5rem 1rem 0 1rem;
+    #grid-container {
+      align-items: center;
+      display: grid;
+      grid-template-areas: "top" "middle" "bottom";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+      height: 100%;
+      justify-items: center;
+    }
+
+    #top {
+      grid-area: top;
+      text-align: center;
+      width: 100%;
+    }
+
+    #branding {
+      display: flex;
+      max-height: 5rem;
+    }
+
+    #branding > section {
+      flex: 1;
+    }
+
+    #badge {
+      text-align: right;
+    }
+
+    #middle {
+      align-self: center;
+      font-weight: bold;
+      grid-area: middle;
+      padding-bottom: 1.5rem;
+    }
+
+    #bottom {
+      background-color: #333;
+      grid-area: bottom;
+      margin-top: 1rem;
+      width: 20rem;
+      min-height: 6rem;
     }
   </style>
+  <script type="module">
+    window.__copyButtonClickHandler = () => { console.log('clipboard polyfill not imported' )}
+
+    import('https://kherrick.github.io/x-pwgen-components/dist/esm/XPwgenUtilities.js')
+      .then(({ clipboardPolyfill }) => {
+         window.__copyButtonClickHandler = (event) => {
+          clipboardPolyfill.writeText(
+            document.querySelector('x-pwgen')
+              .shadowRoot.querySelector('#container > ul')
+              .innerText
+          )
+        }
+      })
+  </script>
 </head>
 <body>
-  <section class="grid-container">
-    <section class="top">
-      <section class="branding">
+  <section id="grid-container">
+    <section id="top">
+      <section id="branding">
         <section></section>
-        <section class="title"><h1>
+        <section id="title"><h1>
           <a href="https://kherrick.github.io/pwgen/">
             pwgen
           </a>
         </h1></section>
-        <section class="badge">
+        <section id="badge">
           <a href="https://github.com/kherrick/pwgen/">
             <img
               alt="Fork me on GitHub"
@@ -130,15 +146,15 @@
         </p>
       </section>
     </section>
-    <section class="middle">
+    <section id="middle">
       <x-pwgen flags="-sync"></x-pwgen>
     </section>
-    <section class="bottom">
+    <section id="bottom">
       <mwc-formfield label="Number of Passwords">
         <mwc-slider
           id="number-of-passwords"
           markers=""
-          max="10"
+          max="5"
           min="1"
           onchange="((that) => {
             document.querySelector('x-pwgen').number = that.value
@@ -162,12 +178,21 @@
           })(this)"
         ></mwc-slider>
       </mwc-formfield>
+      <mwc-formfield id="clipboard" label="">
+        <mwc-button onclick="window.__copyButtonClickHandler(event)">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" fill="#626262"/></svg>&nbsp;Copy to Clipboard
+        </mwc-button>
+      </mwc-formfield>
     </section>
   </section>
-
   <script type="module">
     import './lib/esm/index.js'
-    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/index.js'
+
+    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-button.js'
+    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-slider.js'
+    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-formfield.js'
+
+    import registerServiceWorker from './service-worker/registerServiceWorker.js'
 
     document.addEventListener(
       'x-pwgen-handle-password',
@@ -175,8 +200,6 @@
         console.log(detail.msg)
       }
     )
-
-    import registerServiceWorker from './service-worker/registerServiceWorker.js'
 
     registerServiceWorker(document.querySelector('base').href.replace(/\/$/, ''))
   </script>
