@@ -1,6 +1,9 @@
 <a href="https://kherrick.github.io/pwgen/">pwgen</a>
 ======
 
+![npm version](https://img.shields.io/npm/v/wasmboy.svg)
+[![wapm version](https://wapm.io/package/kherrick/pwgen/badge.svg?style=flat)](https://wapm.io/package/kherrick/pwgen)
+
 A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module.
 
 <a href="https://kherrick.github.io/pwgen/">
