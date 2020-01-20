@@ -3,6 +3,10 @@
 
 A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module.
 
+<a href="https://kherrick.github.io/pwgen/">
+  <img src="https://raw.githubusercontent.com/kherrick/pwgen/master/assets/x-pwgen-screenshot.png" width="200">
+</a>
+
 ## Use on the CLI with Mac, Windows, and Linux
 
 ### With npx

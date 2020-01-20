@@ -2,7 +2,7 @@
   "author": "Karl Herrick",
   "name": "pwgen",
   "description": "A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module.",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "repository": {
     "type": "git",
     "url": "https://github.com/kherrick/pwgen"

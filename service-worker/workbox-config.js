@@ -6,9 +6,11 @@ module.exports = {
   globIgnores: [
     '**/node_modules/**/*',
     '**/service-worker.js',
-    'src/**',
+    'assets/x-pwgen-screenshot.png',
     'lib/main.js',
     'lib/pwgen.js',
+    'service-worker/workbox-config.js',
+    'src/**',
   ],
   templatedURLs: {
     [`${WORKBOX_CONFIG_PATH}`]: `${new Date()}`
