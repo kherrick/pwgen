@@ -53,10 +53,6 @@
       padding: 0 1rem 0 1rem;
     }
 
-    #clipboard {
-      text-align: center;
-    }
-
     #grid-container {
       align-items: center;
       display: grid;
@@ -99,6 +95,15 @@
       margin-top: 1rem;
       width: 20rem;
       min-height: 6rem;
+    }
+
+    #buttons {
+      display: flex;
+    }
+
+    #buttons > mwc-formfield {
+      flex: 1;
+      text-align: center;
     }
   </style>
   <script type="module">
@@ -156,9 +161,7 @@
           markers=""
           max="5"
           min="1"
-          onchange="((that) => {
-            document.querySelector('x-pwgen').number = that.value
-          })(this)"
+          onchange="document.querySelector('x-pwgen').number = this.value"
           pin=""
           step="1"
           value="1"
@@ -167,22 +170,27 @@
       <mwc-formfield label="Length">
         <mwc-slider
           id="password-length"
-          value="20"
-          pin=""
           markers=""
-          min="1"
           max="30"
+          min="1"
+          onchange="document.querySelector('x-pwgen').length = this.value"
+          pin=""
           step="1"
-          onchange="((that) => {
-            document.querySelector('x-pwgen').length = that.value
-          })(this)"
+          value="20"
         ></mwc-slider>
       </mwc-formfield>
-      <mwc-formfield id="clipboard" label="">
-        <mwc-button onclick="window.__copyButtonClickHandler(event)">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" fill="#626262"/></svg>&nbsp;Copy to Clipboard
-        </mwc-button>
-      </mwc-formfield>
+      <section id="buttons">
+        <mwc-formfield label="">
+          <mwc-button onclick="window.__copyButtonClickHandler(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" fill="#626262"/></svg>&nbsp;Copy
+          </mwc-button>
+        </mwc-formfield>
+        <mwc-formfield label="">
+          <mwc-button onclick="document.querySelector('x-pwgen').generate()">
+            Generate
+          </mwc-button>
+        </mwc-formfield>
+      </section>
     </section>
   </section>
   <script type="module">
