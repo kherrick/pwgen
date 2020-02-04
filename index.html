@@ -210,6 +210,13 @@
     )
 
     registerServiceWorker(document.querySelector('base').href.replace(/\/$/, ''))
+
+    // handle back button
+    window.onpopstate = () => {
+      if (document.location !== document.querySelector('base').href) {
+        document.location = document.location
+      }
+    }
   </script>
 </body>
 </html>
