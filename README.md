@@ -9,6 +9,9 @@ A password generator compiled as Wasm for use on the CLI, in a custom element, o
 
 ## Use on the CLI with Mac, Windows, and Linux
 
+[![npm version](https://img.shields.io/npm/v/pwgen.svg)](https://www.npmjs.com/package/pwgen)
+[![wapm version](https://wapm.io/package/kherrick/pwgen/badge.svg?style=flat)](https://wapm.io/package/kherrick/pwgen)
+
 ### With npx
 ```bash
 npx pwgen -sy 20 1
@@ -87,6 +90,15 @@ pwgen({ arguments: [ flags, length, number ], print: stdout => {
   console.log(`Password: ${stdout}`)
 }})
 ```
+
+## Test the experimental web bundle
+
+### Download [pwgen.wbn](https://raw.githubusercontent.com/kherrick/pwgen/master/lib/wbn/dist/pwgen.wbn)
+
+### Read more about web packaging
+
+* [https://web.dev/web-bundles/](https://web.dev/web-bundles/)
+* [https://github.com/WICG/webpackage](https://github.com/WICG/webpackage)
 
 ## Develop
 
