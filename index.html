@@ -53,6 +53,16 @@
       padding: 0 1rem 0 1rem;
     }
 
+    [data-tab-content-0] > section,
+    [data-tab-content-1] > section {
+      display: flex;
+    }
+
+    [data-tab-content-1] > section > mwc-formfield {
+      flex: auto;
+      text-align: center;
+    }
+
     #grid-container {
       align-items: center;
       display: grid;
@@ -120,6 +130,31 @@
         }
       })
   </script>
+  <script>
+    document.addEventListener('MDCTabBar:activated', ({ detail }) => {
+      const index = 1 - detail.index
+
+      document.querySelector(`[data-tab-content-${detail.index}]`).style.display = 'block'
+      document.querySelector(`[data-tab-content-${index}]`).style.display = 'none'
+    })
+
+    const handleCheckboxChange = change => {
+      return event => {
+        const xpwgen = document.querySelector('x-pwgen')
+        const removeDash = string => string.replace(/-/, '')
+
+        let currentFlags = '-' + removeDash(xpwgen.flags).replace(new RegExp(event.currentTarget.value, 'g'), '')
+
+        if (event.currentTarget.checked) {
+          currentFlags = currentFlags + event.currentTarget.value
+        }
+
+        xpwgen.flags = currentFlags !== '-'
+          ? currentFlags
+          : ''
+      }
+    }
+  </script>
 </head>
 <body>
   <section id="grid-container">
@@ -152,42 +187,93 @@
       </section>
     </section>
     <section id="middle">
-      <x-pwgen flags="-sync"></x-pwgen>
+      <x-pwgen flags="-sy"></x-pwgen>
     </section>
     <section id="bottom">
-      <mwc-formfield label="Number of Passwords">
-        <mwc-slider
-          id="number-of-passwords"
-          markers=""
-          max="5"
-          min="1"
-          onchange="document.querySelector('x-pwgen').number = this.value"
-          pin=""
-          step="1"
-          value="1"
-        ></mwc-slider>
-      </mwc-formfield>
-      <mwc-formfield label="Length">
-        <mwc-slider
-          id="password-length"
-          markers=""
-          max="30"
-          min="1"
-          onchange="document.querySelector('x-pwgen').length = this.value"
-          pin=""
-          step="1"
-          value="20"
-        ></mwc-slider>
-      </mwc-formfield>
-      <section id="buttons">
-        <mwc-formfield label="">
-          <mwc-button onclick="window.__copyButtonClickHandler(event)">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" fill="#626262"/></svg>&nbsp;Copy
-          </mwc-button>
+      <mwc-tab-bar>
+        <mwc-tab label="Main"></mwc-tab>
+        <mwc-tab label="Options"></mwc-tab>
+      </mwc-tab-bar>
+      <section data-tab-content-0>
+        <mwc-formfield label="Number of Passwords">
+          <mwc-slider
+            id="number-of-passwords"
+            markers=""
+            max="5"
+            min="1"
+            onchange="document.querySelector('x-pwgen').number = this.value"
+            pin=""
+            step="1"
+            value="1"
+          ></mwc-slider>
         </mwc-formfield>
+        <mwc-formfield label="Length">
+          <mwc-slider
+            id="password-length"
+            markers=""
+            max="30"
+            min="1"
+            onchange="document.querySelector('x-pwgen').length = this.value"
+            pin=""
+            step="1"
+            value="20"
+          ></mwc-slider>
+        </mwc-formfield>
+      </section>
+      <section data-tab-content-1>
+        <section>
+          <mwc-formfield label="Secure">
+            <mwc-checkbox
+              checked
+              id="password-secure"
+              onchange="handleCheckboxChange('password-secure')(event)"
+              value="s"
+            ></mwc-checkbox>
+          </mwc-formfield>
+          <mwc-formfield label="Symbols">
+            <mwc-checkbox
+              checked
+              id="password-symbols"
+              onchange="handleCheckboxChange('password-symbols')(event)"
+              value="y"
+            ></mwc-checkbox>
+          </mwc-formfield>
+        </section>
+        <section>
+          <mwc-formfield label="No Numbers">
+            <mwc-checkbox
+              id="password-no-numbers"
+              onchange="handleCheckboxChange('password-no-numbers')(event)"
+              value="0"
+            ></mwc-checkbox>
+          </mwc-formfield>
+          <mwc-formfield label="No Capitals">
+            <mwc-checkbox
+              id="password-no-capitals"
+              onchange="handleCheckboxChange('password-no-capitals')(event)"
+              value="A"
+            ></mwc-checkbox>
+          </mwc-formfield>
+        </section>
+        <section>
+          <mwc-formfield label="No Ambiguous characters">
+            <mwc-checkbox
+              id="password-no-ambigious"
+              onchange="handleCheckboxChange('password-no-ambigious')(event)"
+              value="B"
+            ></mwc-checkbox>
+          </mwc-formfield>
+        </section>
+      </section>
+      <section id="buttons">
         <mwc-formfield label="">
           <mwc-button onclick="document.querySelector('x-pwgen').generate()">
             Generate
+          </mwc-button>
+        </mwc-formfield>
+        <mwc-formfield label="">
+          <mwc-button onclick="window.__copyButtonClickHandler(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" fill="#626262"/></svg>&nbsp;Copy
           </mwc-button>
         </mwc-formfield>
       </section>
@@ -197,7 +283,11 @@
     import './lib/esm/index.js'
 
     import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-button.js'
+    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-tab-bar.js'
+    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-tab.js'
+    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-button.js'
     import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-slider.js'
+    import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-checkbox.js'
     import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-formfield.js'
 
     import registerServiceWorker from './service-worker/registerServiceWorker.js'
