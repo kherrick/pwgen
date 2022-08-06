@@ -48,7 +48,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/pwgen/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

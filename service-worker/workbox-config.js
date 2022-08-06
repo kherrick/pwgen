@@ -7,10 +7,12 @@ module.exports = {
     '**/node_modules/**/*',
     '**/service-worker.js',
     'assets/x-pwgen-screenshot.png',
-    'lib/main.js',
-    'lib/pwgen.js',
+    'dist/lib/cli.js',
+    'dist/lib/esm/index.js',
+    'dist/lib/pwgen.js',
     'service-worker/workbox-config.js',
     'src/**',
+    'wbn/**',
   ],
   templatedURLs: {
     [`${WORKBOX_CONFIG_PATH}`]: `${new Date()}`

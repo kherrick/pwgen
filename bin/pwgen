@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-const path = require('path')
-const fs = require('fs')
 
-const lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib')
+const { join, dirname } = require("path");
+const { realpathSync } = require("fs");
 
-require(`${lib}/main.js`)
+require(`${join(dirname(realpathSync(__filename)), "../dist/lib")}/cli.js`);

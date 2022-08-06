@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+declare BUILD_DIRECTORY
+BUILD_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+
+cd "${BUILD_DIRECTORY}" || exit 1
+
+readonly pwgen="../dist/lib"
+readonly XPwgenComponent="${pwgen}/esm/component/XPwgen.js"
+
+if [[ ! -d "${pwgen}" ]] || [[ ! -f "${XPwgenComponent}" ]]; then
+  echo pwgen cannot be found
+  echo try running \"npm run build\" in the root of the project
+
+  exit 1
+fi
+
+cp -pR "${XPwgenComponent}" "${XPwgenComponent}.dist" \
+  && sed -i.bak '74,81 s/./\/\/&/' "${XPwgenComponent}" \
+  && rm "${XPwgenComponent}.bak" \
+  && sed -i.bak '82i \this.wasmModule = { default: pwgen }; this.generate(); this.hasRendered = true;' "${XPwgenComponent}" \
+  && rm "${XPwgenComponent}.bak" \
+  && bin/hydrate-template.mjs > index.html \
+  && mv "${XPwgenComponent}.dist" "${XPwgenComponent}"

@@ -1,5 +1,7 @@
-/node_modules
-/package-lock.json
-/service-worker.js
-/wapm_packages
-/wapm.lock
+build
+dist
+node_modules
+package-lock.json
+service-worker.js
+wapm_packages
+wapm.lock

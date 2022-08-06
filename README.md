@@ -1,5 +1,4 @@
-<a href="https://kherrick.github.io/pwgen/">pwgen</a>
-======
+# [pwgen](https://kherrick.github.io/pwgen/)
 
 A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module.
 
@@ -13,11 +12,13 @@ A password generator compiled as Wasm for use on the CLI, in a custom element, o
 [![wapm version](https://wapm.io/package/kherrick/pwgen/badge.svg?style=flat)](https://wapm.io/package/kherrick/pwgen)
 
 ### With npx
+
 ```bash
 npx pwgen -sy 20 1
 ```
 
 ### With npm, as a global package
+
 ```bash
 npm i -g pwgen
 ```
@@ -27,6 +28,7 @@ pwgen -sy 20 1
 ```
 
 ### With wapm
+
 ```bash
 wapm install kherrick/pwgen
 
@@ -36,6 +38,7 @@ wapm run pwgen -sy 20 1
 ## Use as a custom element
 
 ### With default options ([demo](https://jsbin.com/yikizelado/1/edit?html,output))
+
 ```html
 <x-pwgen></x-pwgen>
 
@@ -45,6 +48,7 @@ wapm run pwgen -sy 20 1
 ```
 
 ### With additional options and detail logging ([demo](https://jsbin.com/jecoyiwuya/1/edit?html,console,output))
+
 ```html
 <x-pwgen composed flags="-sy" length="20" number="1"></x-pwgen>
 
@@ -86,14 +90,17 @@ const flags = '-1sy'
 const length = '20'
 const number = '10'
 
-pwgen({ arguments: [ flags, length, number ], print: stdout => {
-  console.log(`Password: ${stdout}`)
-}})
+pwgen({
+  arguments: [ flags, length, number ],
+  print: stdout => {
+    console.log(`Password: ${stdout}`)
+  }
+})
 ```
 
 ## Test the experimental web bundle
 
-### Download [pwgen.wbn](https://raw.githubusercontent.com/kherrick/pwgen/master/lib/wbn/dist/pwgen.wbn)
+### Download [pwgen.wbn](https://kherrick.github.io/pwgen/wbn/dist/pwgen.wbn)
 
 ### Read more about web packaging
 
@@ -122,9 +129,8 @@ git clone https://github.com/kherrick/pwgen && \
 npm start
 ```
 
-### Build Wasm
+### Build
 
 ```bash
-npm run build:node && \
-  npm run build:browser
+npm run build
 ```

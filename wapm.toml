@@ -1,6 +1,6 @@
 [package]
 name = "kherrick/pwgen"
-version = "1.1.0"
+version = "1.2.0"
 description = "A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module."
 license = "AGPL-3.0"
 repository = "https://github.com/kherrick/pwgen"
@@ -8,7 +8,7 @@ readme = "./README.md"
 
 [[module]]
 name = "pwgen"
-source = "lib/pwgen.wasm"
+source = "dist/lib/pwgen.wasm"
 abi = "emscripten"
 
 [[command]]

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="Description" content="A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module.">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>pwgen</title>
+  <link
+    type="image/png"
+    rel="shortcut icon"
+    href="data:image/png;base64,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"
+  >
+  <style>
+    :root {
+      --x-pwgen-font-family: monospace;
+      --x-pwgen-font-size: 1rem;
+      --x-pwgen-li-padding: 0.75rem 0 0 0;
+
+      --mdc-theme-primary: #ccc;
+      --mdc-theme-secondary: #ccc;
+      --mdc-theme-text-primary-on-background: #fff;
+      --mdc-theme-text-primary-on-dark: #000;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    a {
+      color: #222;
+    }
+
+    section > p {
+      margin: 0;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+
+    mwc-formfield {
+      display: block;
+    }
+
+    x-pwgen {
+      overflow-wrap: break-word;
+    }
+
+    mwc-slider {
+      padding: 0 1rem 0 1rem;
+    }
+
+    [data-tab-content-0] > section,
+    [data-tab-content-1] > section {
+      display: flex;
+    }
+
+    [data-tab-content-1] > section > mwc-formfield {
+      flex: auto;
+      text-align: center;
+    }
+
+    #grid-container {
+      align-items: center;
+      display: grid;
+      grid-template-areas: "top" "middle" "bottom";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+      height: 100%;
+      justify-items: center;
+    }
+
+    #top {
+      grid-area: top;
+      text-align: center;
+      width: 100%;
+    }
+
+    #branding {
+      display: flex;
+      max-height: 5rem;
+    }
+
+    #branding > section {
+      flex: 1;
+    }
+
+    #middle {
+      align-self: center;
+      font-weight: bold;
+      grid-area: middle;
+      padding-bottom: 1.5rem;
+    }
+
+    #bottom {
+      background-color: #333;
+      grid-area: bottom;
+      margin-top: 1rem;
+      width: 20rem;
+      min-height: 6rem;
+    }
+
+    #buttons {
+      display: flex;
+    }
+
+    #buttons > mwc-formfield {
+      flex: 1;
+      text-align: center;
+    }
+  </style>
+  <script>
+    // <script type="module">
+    // https://kherrick.github.io/x-pwgen-components/dist/esm/XPwgenUtilities.js
+
+    window.__copyButtonClickHandler = (event) => {
+      window['x-pwgen-components'].utilities.clipboardPolyfill.writeText(
+        document.querySelector('x-pwgen')
+          .shadowRoot.querySelector('ul')
+          .innerText
+      )
+    }
+  </script>
+  <script>
+    document.addEventListener('MDCTabBar:activated', ({ detail }) => {
+      const index = 1 - detail.index
+
+      document.querySelector(`[data-tab-content-${detail.index}]`).style.display = 'block'
+      document.querySelector(`[data-tab-content-${index}]`).style.display = 'none'
+    })
+
+    const handleCheckboxChange = change => {
+      return event => {
+        const xpwgen = document.querySelector('x-pwgen')
+        const removeDash = string => string.replace(/-/, '')
+
+        let currentFlags = '-' + removeDash(xpwgen.flags).replace(new RegExp(event.currentTarget.value, 'g'), '')
+
+        if (event.currentTarget.checked) {
+          currentFlags = currentFlags + event.currentTarget.value
+        }
+
+        xpwgen.flags = currentFlags !== '-'
+          ? currentFlags
+          : ''
+      }
+    }
+  </script>
+</head>
+<body>
+  <section id="grid-container">
+    <section id="top">
+      <section id="branding">
+        <section></section>
+        <section id="title"><h1>
+          <a href="https://kherrick.github.io/pwgen/">
+            pwgen
+          </a>
+        </h1></section>
+        <section></section>
+      </section>
+      <section>
+        <p>
+          A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module. <a href="https://github.com/kherrick/pwgen/">Learn More</a>.
+        </p>
+      </section>
+    </section>
+    <section id="middle">
+      <x-pwgen flags="-sy"></x-pwgen>
+    </section>
+    <section id="bottom">
+      <mwc-tab-bar>
+        <mwc-tab label="Main"></mwc-tab>
+        <mwc-tab label="Options"></mwc-tab>
+      </mwc-tab-bar>
+      <section data-tab-content-0>
+        <mwc-formfield label="Number of Passwords">
+          <mwc-slider
+            id="number-of-passwords"
+            markers=""
+            max="5"
+            min="1"
+            onchange="document.querySelector('x-pwgen').number = this.value"
+            pin=""
+            step="1"
+            value="1"
+          ></mwc-slider>
+        </mwc-formfield>
+        <mwc-formfield label="Length">
+          <mwc-slider
+            id="password-length"
+            markers=""
+            max="30"
+            min="1"
+            onchange="document.querySelector('x-pwgen').length = this.value"
+            pin=""
+            step="1"
+            value="20"
+          ></mwc-slider>
+        </mwc-formfield>
+      </section>
+      <section data-tab-content-1>
+        <section>
+          <mwc-formfield label="Secure">
+            <mwc-checkbox
+              checked
+              id="password-secure"
+              onchange="handleCheckboxChange('password-secure')(event)"
+              value="s"
+            ></mwc-checkbox>
+          </mwc-formfield>
+          <mwc-formfield label="Symbols">
+            <mwc-checkbox
+              checked
+              id="password-symbols"
+              onchange="handleCheckboxChange('password-symbols')(event)"
+              value="y"
+            ></mwc-checkbox>
+          </mwc-formfield>
+        </section>
+        <section>
+          <mwc-formfield label="No Numbers">
+            <mwc-checkbox
+              id="password-no-numbers"
+              onchange="handleCheckboxChange('password-no-numbers')(event)"
+              value="0"
+            ></mwc-checkbox>
+          </mwc-formfield>
+          <mwc-formfield label="No Capitals">
+            <mwc-checkbox
+              id="password-no-capitals"
+              onchange="handleCheckboxChange('password-no-capitals')(event)"
+              value="A"
+            ></mwc-checkbox>
+          </mwc-formfield>
+        </section>
+        <section>
+          <mwc-formfield label="No Ambiguous characters">
+            <mwc-checkbox
+              id="password-no-ambigious"
+              onchange="handleCheckboxChange('password-no-ambigious')(event)"
+              value="B"
+            ></mwc-checkbox>
+          </mwc-formfield>
+        </section>
+      </section>
+      <section id="buttons">
+        <mwc-formfield label="">
+          <mwc-button onclick="document.querySelector('x-pwgen').generate()">
+            Generate
+          </mwc-button>
+        </mwc-formfield>
+        <mwc-formfield label="">
+          <mwc-button onclick="window.__copyButtonClickHandler(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" fill="#626262"/></svg>&nbsp;Copy
+          </mwc-button>
+        </mwc-formfield>
+      </section>
+    </section>
+  </section>
+  <script type="module">
+    document.addEventListener(
+      'x-pwgen-handle-password',
+      ({ detail }) => {
+        console.log(detail.msg)
+      }
+    )
+
+    // handle back button
+    window.onpopstate = () => {
+      if (document.location !== document.querySelector('base').href) {
+        document.location = document.location
+      }
+    }
+  </script>
+</body>
+</html>

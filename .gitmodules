@@ -1,3 +1,3 @@
-[submodule "src"]
-	path = src
+[submodule "src/pwgen"]
+	path = src/pwgen
 	url = https://github.com/tytso/pwgen

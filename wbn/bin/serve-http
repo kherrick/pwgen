@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+declare BUILD_DIRECTORY
+BUILD_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+
+cd "${BUILD_DIRECTORY}" || exit 1
+
+npx serve -s . -p 3000

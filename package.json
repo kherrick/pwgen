@@ -2,37 +2,55 @@
   "author": "Karl Herrick",
   "name": "pwgen",
   "description": "A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/kherrick/pwgen"
   },
   "license": "AGPL-3.0",
-  "main": "./lib/pwgen.js",
-  "module": "./lib/esm/component/Xpwgen.js",
-  "browser": "./lib/esm/component/Xpwgen.js",
-  "types": "lib/esm/component/types.d.ts",
+  "main": "./dist/lib/pwgen.js",
+  "browser": "./dist/lib/esm/index.js",
+  "types": "./dist/lib/esm/index.d.ts",
   "bin": {
     "pwgen": "./bin/pwgen"
   },
   "scripts": {
-    "start": "npx serve -s .",
-    "clean": "./bin/clean-src-build.sh",
+    "start": "serve -s .",
+    "clean:package": "rimraf dist build",
+    "clean:src:pwgen": "./bin/clean-src-pwgen.sh",
     "build:service-worker": "workbox generateSW ./service-worker/workbox-config.js",
-    "build:browser": "npm run clean && ./bin/compile-src-browser-build.sh",
-    "build:node": "npm run clean && ./bin/compile-src-node-build.sh"
+    "build:src:browser": "npm run clean:src:pwgen && ./bin/compile-browser-src-pwgen-lib-esm.sh",
+    "build:src:node": "npm run clean:src:pwgen && ./bin/compile-node-src-pwgen-lib.sh",
+    "build:wbn": "wbn/bin/build-wbn",
+    "build": "npm run clean:package && mkdirp build && ncp ./src/lib ./build/lib && npm run build:src:browser && npm run build:src:node && tsc --declaration true --inlineSources false --sourceMap false && ncp ./build/lib/pwgen.wasm ./dist/lib/pwgen.wasm && rimraf ./build",
+    "prepack": "sed -i.bak 's@^dist@#dist@g' ./.gitignore && rimraf ./.gitignore.bak && npm run build"
   },
   "files": [
-    "bin",
-    "lib",
-    "src"
+    "bin/pwgen",
+    "dist"
   ],
-  "dependencies": {},
   "devDependencies": {
+    "@types/node": "^18.6.3",
+    "btoa": "^1.2.1",
+    "cssnano": "^5.1.12",
+    "htmlnano": "^2.0.2",
+    "isomorphic-fetch": "^3.0.0",
+    "mkdirp": "^1.0.4",
+    "ncp": "^2.0.0",
+    "postcss": "^8.4.14",
+    "posthtml": "^0.16.6",
+    "posthtml-cli": "^0.10.0",
+    "posthtml-extra-attributes": "^1.0.1",
+    "posthtml-insert-at": "^0.2.7",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
     "serve": "^11.3.0",
+    "svgo": "^2.8.0",
+    "terser": "^5.13.1",
+    "typescript": "^4.7.4",
+    "wbn": "^0.0.8",
     "workbox-cli": "^4.3.1"
   },
-  "optionalDependencies": {},
   "engines": {
     "node": ">=8.17.0"
   },

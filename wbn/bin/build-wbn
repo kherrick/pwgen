@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+declare BUILD_DIRECTORY
+BUILD_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+
+cd "${BUILD_DIRECTORY}" || exit 1
+
+bin/build-template \
+  && rm -rf ./dist ./build \
+  && mkdir ./build \
+  && cd build \
+  && cp ../index.html ./ \
+  && npx posthtml index.html -u htmlnano > /dev/null 2>&1 \
+  && npx wbn \
+    --dir . \
+    --baseURL https://kherrick.github.io/pwgen/ \
+    --primaryURL https://kherrick.github.io/pwgen/ \
+    --output ./pwgen.wbn \
+  && cd .. \
+  && mkdir ./dist \
+  && mv ./build/pwgen.wbn ./dist/ \
+  && rm -rf ./build \
+  && rm index.html

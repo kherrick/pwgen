@@ -124,7 +124,7 @@
          window.__copyButtonClickHandler = (event) => {
           clipboardPolyfill.writeText(
             document.querySelector('x-pwgen')
-              .shadowRoot.querySelector('#container > ul')
+              .shadowRoot.querySelector('ul')
               .innerText
           )
         }
@@ -167,7 +167,7 @@
           </a>
         </h1></section>
         <section id="badge">
-          <a href="https://github.com/kherrick/pwgen/">
+          <a href="https://github.com/kherrick/pwgen/" target="_top">
             <img
               alt="Fork me on GitHub"
               class="attachment-full size-full"
@@ -182,7 +182,7 @@
       </section>
       <section>
         <p>
-          A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module. <a href="https://github.com/kherrick/pwgen/">Learn More</a>.
+          A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module. <a href="https://github.com/kherrick/pwgen/" target="_top">Learn More</a>.
         </p>
       </section>
     </section>
@@ -280,7 +280,7 @@
     </section>
   </section>
   <script type="module">
-    import './lib/esm/index.js'
+    import './dist/lib/esm/component/XPwgen.js'
 
     import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-button.js'
     import 'https://kherrick.github.io/x-pwgen-components/dist/esm/mwc-tab-bar.js'
