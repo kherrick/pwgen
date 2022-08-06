@@ -2,7 +2,7 @@
   "author": "Karl Herrick",
   "name": "pwgen",
   "description": "A password generator compiled as Wasm for use on the CLI, in a custom element, or as a module.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/kherrick/pwgen"
@@ -22,8 +22,8 @@
     "build:src:browser": "npm run clean:src:pwgen && ./bin/compile-browser-src-pwgen-lib-esm.sh",
     "build:src:node": "npm run clean:src:pwgen && ./bin/compile-node-src-pwgen-lib.sh",
     "build:wbn": "wbn/bin/build-wbn",
-    "build": "npm run clean:package && mkdirp build && ncp ./src/lib ./build/lib && npm run build:src:browser && npm run build:src:node && tsc --declaration true --inlineSources false --sourceMap false && ncp ./build/lib/pwgen.wasm ./dist/lib/pwgen.wasm && rimraf ./build",
-    "prepack": "sed -i.bak 's@^dist@#dist@g' ./.gitignore && rimraf ./.gitignore.bak && npm run build"
+    "build": "./bin/build.sh",
+    "prepack": "./bin/prepack.sh"
   },
   "files": [
     "bin/pwgen",
