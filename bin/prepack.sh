@@ -6,4 +6,5 @@ cd "${SCRIPT_SOURCE}/.." || exit 1
 
 sed -i.bak 's@^dist@#dist@g' ./.gitignore \
   && rimraf ./.gitignore.bak \
-  && npm run build
+  && npm run build \
+  && find dist -type f -iname "*.js" -exec npx terser {} -o {} \;

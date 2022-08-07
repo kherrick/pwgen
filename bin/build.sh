@@ -11,5 +11,4 @@ npm run clean:package \
   && npm run build:src:node \
   && tsc --declaration true --inlineSources false --sourceMap false \
   && ncp ./build/lib/pwgen.wasm ./dist/lib/pwgen.wasm \
-  && rimraf ./build \
-  && find dist -type f -iname "*.js" -exec npx terser {} -o {} \;
+  && rimraf ./build
