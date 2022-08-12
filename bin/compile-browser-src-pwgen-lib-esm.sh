@@ -11,38 +11,38 @@ if [[ ! -d src/pwgen ]] || [[ ! "$(ls -A src/pwgen)" ]]; then
   exit 1
 fi
 
-cd src/pwgen && \
-  docker run --rm \
+cd src/pwgen \
+  && docker run --rm \
     -v "$(pwd):/app" \
-    -it trzeci/emscripten:sdk-incoming-64bit bash -c \
-    'apt-get update && \
-      apt-get install automake -y && \
-      cd /app && \
-      export LDFLAGS="-Oz" && \
-      export CFLAGS="-Oz" && \
-      export CXXFLAGS="-Oz" && \
-      autoconf && \
-      emconfigure ./configure && \
-      make && \
-      mkdir -p out && \
-      /emsdk_portable/emscripten/tag-1.38.43/emcc \
-        -Oz \
-        --bind \
-          pwgen.o \
+    -it trzeci/emscripten:sdk-incoming-64bit bash -c '\
+      apt-get update \
+        && apt-get install automake -y \
+        && cd /app \
+        && export LDFLAGS="-Oz" \
+        && export CFLAGS="-Oz" \
+        && export CXXFLAGS="-Oz" \
+        && autoconf \
+        && emconfigure ./configure \
+        && make \
+        && mkdir -p out \
+        && /emsdk_portable/emscripten/tag-1.38.43/emcc \
+          --bind \
+          -Oz \
+          -s ALLOW_MEMORY_GROWTH=1 \
+          -s ENVIRONMENT=web \
+          -s EXIT_RUNTIME=1 \
+          -s EXPORT_ES6=1 \
+          -s EXPORT_NAME="pwgen" \
+          -s MALLOC=emmalloc \
+          -s MODULARIZE=1 \
+          -s STRICT=1 \
           pw_phonemes.o \
           pw_rand.o \
+          pwgen.o \
           randnum.o \
           sha1.o \
           sha1num.o \
-        -s STRICT=1 \
-        -s ALLOW_MEMORY_GROWTH=1 \
-        -s MALLOC=emmalloc \
-        -s ENVIRONMENT=web \
-        -s MODULARIZE=1 \
-        -s EXPORT_ES6=1 \
-        -s EXIT_RUNTIME=1 \
-        -s EXPORT_NAME="pwgen" \
-        -o out/pwgen.html \
+          -o out/pwgen.html \
     '
 
 cd "${SCRIPT_SOURCE}/.." || exit 1

@@ -11,28 +11,28 @@ if [[ ! -d src/pwgen ]] || [[ ! "$(ls -A src/pwgen)" ]]; then
   exit 1
 fi
 
-cd src/pwgen && \
-  docker run --rm \
-    -v "$(pwd):/app" -it trzeci/emscripten:sdk-incoming-64bit bash -c \
-    'apt-get update && \
-      apt-get install automake -y && \
-      cd /app && \
-      autoconf && \
-      emconfigure ./configure && \
-      make && \
-      mkdir -p out && \
-      /emsdk_portable/emscripten/tag-1.38.43/emcc \
-        pwgen.o \
-        pw_phonemes.o \
-        pw_rand.o \
-        randnum.o \
-        sha1.o \
-        sha1num.o \
-      -s ENVIRONMENT=node \
-      -s MODULARIZE=1 \
-      -s EXIT_RUNTIME=1 \
-      -s EXPORT_NAME="pwgen" \
-      -o out/pwgen.html \
+cd src/pwgen \
+  && docker run --rm \
+    -v "$(pwd):/app" -it trzeci/emscripten:sdk-incoming-64bit bash -c '\
+      apt-get update \
+        && apt-get install automake -y \
+        && cd /app \
+        && autoconf \
+        && emconfigure ./configure \
+        && make \
+        && mkdir -p out \
+        && /emsdk_portable/emscripten/tag-1.38.43/emcc \
+          -s ENVIRONMENT=node \
+          -s EXIT_RUNTIME=1 \
+          -s EXPORT_NAME="pwgen" \
+          -s MODULARIZE=1 \
+          pw_phonemes.o \
+          pw_rand.o \
+          pwgen.o \
+          randnum.o \
+          sha1.o \
+          sha1num.o \
+          -o out/pwgen.html \
     '
 
 cd "${SCRIPT_SOURCE}/.." || exit 1

@@ -154,9 +154,9 @@ pwgen({
 ### Clone the project and submodules
 
 ```bash
-git clone https://github.com/kherrick/pwgen && \
-  cd pwgen && \
-  git submodule update --init --recursive
+git clone https://github.com/kherrick/pwgen \
+  && cd pwgen \
+  && git submodule update --init --recursive
 ```
 
 ### Start
