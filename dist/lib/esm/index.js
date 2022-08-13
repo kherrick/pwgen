@@ -1,3 +1,1 @@
-import pwgen from "./pwgen.js";
-export { pwgen };
-export * from "./component/XPwgen.js";
+import pwgen from"./pwgen.js";export{pwgen};export*from"./component/XPwgen.js";
