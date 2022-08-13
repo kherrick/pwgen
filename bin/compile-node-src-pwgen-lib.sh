@@ -22,6 +22,7 @@ cd src/pwgen \
         && make \
         && mkdir -p out \
         && /emsdk_portable/emscripten/tag-1.38.43/emcc \
+          -O1 \
           -s ENVIRONMENT=node \
           -s EXIT_RUNTIME=1 \
           -s EXPORT_NAME="pwgen" \
