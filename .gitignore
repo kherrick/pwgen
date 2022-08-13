@@ -2,6 +2,6 @@ build
 #dist
 node_modules
 package-lock.json
-service-worker.js
+#service-worker.js
 wapm_packages
 wapm.lock
