@@ -1,23 +1,23 @@
-const WORKBOX_CONFIG_PATH = process.env.WORKBOX_CONFIG_PATH || '/'
+const WORKBOX_CONFIG_PATH = process.env.WORKBOX_CONFIG_PATH || "/";
 
 module.exports = {
-  globDirectory: './',
-  globPatterns: ['**/*.{css,js,png,ico,html}', 'manifest.json'],
+  globDirectory: "./",
+  globPatterns: ["**/*.{css,js,png,ico,html}", "manifest.json"],
   globIgnores: [
-    '**/node_modules/**/*',
-    '**/service-worker.js',
-    'assets/x-pwgen-screenshot.png',
-    'dist/lib/cli.js',
-    'dist/lib/esm/index.js',
-    'dist/lib/pwgen.js',
-    'service-worker/workbox-config.js',
-    'src/**',
-    'wbn/**',
+    "**/node_modules/**/*",
+    "**/service-worker.js",
+    "assets/x-pwgen-screenshot.png",
+    "dist/lib/cli.js",
+    "dist/lib/esm/index.js",
+    "dist/lib/pwgen.js",
+    "service-worker/workbox-config.js",
+    "src/**",
+    "wbn/**",
   ],
   templatedURLs: {
-    [`${WORKBOX_CONFIG_PATH}`]: `${new Date()}`
+    [WORKBOX_CONFIG_PATH]: new Date().toISOString()
   },
-  swDest: 'service-worker.js',
+  swDest: "service-worker.js",
   // Define runtime caching rules.
   runtimeCaching: [
     {
@@ -25,87 +25,89 @@ module.exports = {
       urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
 
       // Apply a cache-first strategy.
-      handler: 'CacheFirst',
+      handler: "CacheFirst",
 
       options: {
         // Use a custom cache name.
-        cacheName: 'images',
+        cacheName: "images",
 
         // Only cache 10 images.
         expiration: {
-          maxEntries: 100
-        }
-      }
+          maxEntries: 100,
+        },
+      },
     },
     {
-      urlPattern: new RegExp('^https://fonts.gstatic.com/.*$'),
-      handler: 'CacheFirst',
+      urlPattern: new RegExp("^https://fonts.gstatic.com/.*$"),
+      handler: "CacheFirst",
       options: {
         cacheableResponse: {
-          statuses: [0, 200]
+          statuses: [0, 200],
         },
-        cacheName: 'fonts-gstatic-com-cache',
+        cacheName: "fonts-gstatic-com-cache",
         expiration: {
           maxEntries: 1000,
-          maxAgeSeconds: 365 * 24 * 60 * 60 // 365 days
-        }
-      }
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
+        },
+      },
     },
     {
-      urlPattern: new RegExp('^https://fonts.googleapis.com/.*$'),
-      handler: 'CacheFirst',
+      urlPattern: new RegExp("^https://fonts.googleapis.com/.*$"),
+      handler: "CacheFirst",
       options: {
         cacheableResponse: {
-          statuses: [0, 200]
+          statuses: [0, 200],
         },
-        cacheName: 'fonts-googleapis-com-cache',
+        cacheName: "fonts-googleapis-com-cache",
         expiration: {
           maxEntries: 1000,
-          maxAgeSeconds: 365 * 24 * 60 * 60 // 365 days
-        }
-      }
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
+        },
+      },
     },
     {
-      urlPattern: new RegExp('^https://github.blog/.*$'),
-      handler: 'CacheFirst',
+      urlPattern: new RegExp("^https://github.blog/.*$"),
+      handler: "CacheFirst",
       options: {
         cacheableResponse: {
-          statuses: [0, 200]
+          statuses: [0, 200],
         },
-        cacheName: 'github-blog-cache',
+        cacheName: "github-blog-cache",
         expiration: {
           maxEntries: 1000,
-          maxAgeSeconds: 365 * 24 * 60 * 60 // 365 days
-        }
-      }
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
+        },
+      },
     },
     {
-      urlPattern: new RegExp('^https://kherrick.github.io/x-pwgen-components.*$'),
-      handler: 'CacheFirst',
+      urlPattern: new RegExp(
+        "^https://kherrick.github.io/x-pwgen-components.*$"
+      ),
+      handler: "CacheFirst",
       options: {
         cacheableResponse: {
-          statuses: [0, 200]
+          statuses: [0, 200],
         },
-        cacheName: 'kherrick-github-io-x-pwgen-components-cache',
+        cacheName: "kherrick-github-io-x-pwgen-components-cache",
         expiration: {
           maxEntries: 1000,
-          maxAgeSeconds: 365 * 24 * 60 * 60 // 365 days
-        }
-      }
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
+        },
+      },
     },
     {
-      urlPattern: new RegExp('^https://kherrick.github.io/pwgen.*$'),
-      handler: 'NetworkFirst',
+      urlPattern: new RegExp("^https://kherrick.github.io/pwgen.*$"),
+      handler: "NetworkFirst",
       options: {
         cacheableResponse: {
-          statuses: [0, 200]
+          statuses: [0, 200],
         },
-        cacheName: 'kherrick-github-io-pwgen-cache',
+        cacheName: "kherrick-github-io-pwgen-cache",
         expiration: {
           maxEntries: 1000,
-          maxAgeSeconds: 365 * 24 * 60 * 60 // 365 days
-        }
-      }
-    }
-  ]
-}
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
+        },
+      },
+    },
+  ],
+};
