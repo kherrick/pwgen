@@ -1,5 +1,5 @@
 build
-dist
+#dist
 node_modules
 package-lock.json
 service-worker.js
