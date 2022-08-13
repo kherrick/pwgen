@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import { fileURLToPath } from "url";
-import { insertAt } from "posthtml-insert-at";
-import { promises as fs } from "fs";
-import { resolve, dirname } from "path";
 import btoa from "btoa";
 import fetch from "isomorphic-fetch";
 import PostHTML from "posthtml";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+import { insertAt } from "posthtml-insert-at";
+import { promises as fs } from "fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const getFile = (file) => fs.readFile(file, "utf8");
