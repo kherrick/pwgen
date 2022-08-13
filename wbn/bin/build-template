@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-declare BUILD_DIRECTORY
-BUILD_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+SCRIPT_SOURCE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd "${BUILD_DIRECTORY}" || exit 1
+cd "${SCRIPT_SOURCE}/.." || exit 1
 
 readonly pwgen="../dist/lib"
 readonly XPwgenComponent="${pwgen}/esm/component/XPwgen.js"
