@@ -11,17 +11,18 @@ if [[ ! -d src/pwgen ]] || [[ ! "$(ls -A src/pwgen)" ]]; then
   exit 1
 fi
 
-cd src/pwgen \
+cd src \
   && docker run --rm \
     -v "$(pwd):/app" -it trzeci/emscripten:sdk-incoming-64bit bash -c '\
       apt-get update \
         && apt-get install automake -y \
-        && cd /app \
+        && cd /app/pwgen \
         && autoconf \
         && emconfigure ./configure \
         && make \
         && mkdir -p out \
         && /emsdk_portable/emscripten/tag-1.38.43/emcc \
+          --pre-js /app/node-pre.js \
           -O1 \
           -s ENVIRONMENT=node \
           -s EXIT_RUNTIME=1 \
