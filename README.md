@@ -123,15 +123,6 @@ pwgen({
 })
 ```
 
-## Test the experimental web bundle
-
-### Download [pwgen.wbn](https://kherrick.github.io/pwgen/wbn/dist/pwgen.wbn)
-
-### Read more about web packaging
-
-* [https://web.dev/web-bundles/](https://web.dev/web-bundles/)
-* [https://github.com/WICG/webpackage](https://github.com/WICG/webpackage)
-
 ## Develop
 
 ### Requirements

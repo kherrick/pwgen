@@ -12,7 +12,6 @@ module.exports = {
     "dist/lib/pwgen.js",
     "service-worker/workbox-config.js",
     "src/**",
-    "wbn/**",
   ],
   templatedURLs: {
     [WORKBOX_CONFIG_PATH]: new Date().toISOString()

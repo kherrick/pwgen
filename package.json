@@ -21,7 +21,6 @@
     "build:service-worker": "workbox generateSW ./service-worker/workbox-config.js",
     "build:src:browser": "npm run clean:src:pwgen && ./bin/compile-browser-src-pwgen-lib-esm.sh",
     "build:src:node": "npm run clean:src:pwgen && ./bin/compile-node-src-pwgen-lib.sh",
-    "build:wbn": "wbn/bin/build-wbn",
     "build": "./bin/build.sh",
     "prepack": "./bin/prepack.sh"
   },
@@ -48,7 +47,6 @@
     "svgo": "^2.8.0",
     "terser": "^5.13.1",
     "typescript": "^4.7.4",
-    "wbn": "^0.0.8",
     "workbox-cli": "^4.3.1"
   },
   "engines": {
