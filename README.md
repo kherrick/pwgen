@@ -9,7 +9,6 @@ A [password generator](https://kherrick.github.io/pwgen/) compiled as Wasm for u
 ## Use with the CLI on Mac, Windows, and Linux
 
 [![npm version](https://img.shields.io/npm/v/pwgen.svg)](https://www.npmjs.com/package/pwgen)
-[![wapm version](https://wapm.io/package/kherrick/pwgen/badge.svg?style=flat)](https://wapm.io/package/kherrick/pwgen)
 
 ### With npx
 
@@ -25,16 +24,6 @@ npm i -g pwgen
 
 ```bash
 pwgen -sy 20 1
-```
-
-### With wapm
-
-```bash
-wapm install kherrick/pwgen
-```
-
-```bash
-wapm run pwgen -sy 20 1
 ```
 
 ## Use in HTML ([demo](https://jsbin.com/yuvazejipu/edit?html,console,output))
